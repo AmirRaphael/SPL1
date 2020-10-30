@@ -5,6 +5,7 @@
 
 class Session; //added by Raphael - Session was used in the file but not defined
 
+//============Tree==============
 class Tree{
 public:
     Tree(int rootLabel);
@@ -17,7 +18,7 @@ private:
     int node;
     std::vector<Tree*> children;
 };
-
+//============CycleTree==============
 class CycleTree: public Tree{
 public:
     CycleTree(int rootLabel, int currCycle);
@@ -25,13 +26,13 @@ public:
 private:
     int currCycle;
 };
-
+//============MaxRankTree==============
 class MaxRankTree: public Tree{
 public:
     MaxRankTree(int rootLabel);
     virtual int traceTree();
 };
-
+//============RootTree==============
 class RootTree: public Tree{
 public:
     RootTree(int rootLabel);
