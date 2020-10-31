@@ -1,0 +1,38 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/amirzaushnizer/Desktop/SPL1/Graph.cpp
+Graph.h
+/Users/amirzaushnizer/Desktop/SPL1/Graph.h
+
+/Users/amirzaushnizer/Desktop/SPL1/Graph.h
+vector
+-
+Tree.h
+/Users/amirzaushnizer/Desktop/SPL1/Tree.h
+
+/Users/amirzaushnizer/Desktop/SPL1/Session.h
+vector
+-
+string
+-
+Graph.h
+/Users/amirzaushnizer/Desktop/SPL1/Graph.h
+
+/Users/amirzaushnizer/Desktop/SPL1/Tree.h
+vector
+-
+Session.h
+/Users/amirzaushnizer/Desktop/SPL1/Session.h
+
+/Users/amirzaushnizer/Desktop/SPL1/main.cpp
+iostream
+-
+Session.h
+/Users/amirzaushnizer/Desktop/SPL1/Session.h
+

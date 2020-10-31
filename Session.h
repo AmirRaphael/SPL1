@@ -23,7 +23,7 @@ public:
 
     void enqueueInfected(int);
     int dequeueInfected();
-    TreeType getTreeType();
+    TreeType getTreeType() const;
 
 private:
     Graph g;
