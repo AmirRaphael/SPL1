@@ -2,16 +2,14 @@
 #define TREE_H_
 
 #include <vector>
+#include "Session.h"
 
-class Session; //added by Raphael - Session was used in the file but not defined
 
 //============Tree==============
 class Tree{
 public:
     Tree(int rootLabel);
     void addChild(const Tree& child);
-
-
     static Tree* createTree(const Session& session, int rootLabel);
     virtual int traceTree()=0;
 private:
