@@ -2,16 +2,20 @@
 #define TREE_H_
 
 #include <vector>
+
 #include "Session.h"
+
 
 
 //============Tree==============
 class Tree{
 public:
     Tree(int rootLabel);
+    Tree(const Tree &other);
     void addChild(const Tree& child);
     static Tree* createTree(const Session& session, int rootLabel);
     virtual int traceTree()=0;
+    static Tree* createChild(TreeType type,int label,int cycle);
 private:
     int node;
     std::vector<Tree*> children;

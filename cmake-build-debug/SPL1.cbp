@@ -82,6 +82,9 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/Users/amirzaushnizer/Desktop/SPL1/Agent.cpp">
+			<Option target="SPL1"/>
+		</Unit>
 		<Unit filename="/Users/amirzaushnizer/Desktop/SPL1/Agent.h">
 			<Option target="SPL1"/>
 		</Unit>
@@ -91,7 +94,13 @@
 		<Unit filename="/Users/amirzaushnizer/Desktop/SPL1/Graph.h">
 			<Option target="SPL1"/>
 		</Unit>
+		<Unit filename="/Users/amirzaushnizer/Desktop/SPL1/Session.cpp">
+			<Option target="SPL1"/>
+		</Unit>
 		<Unit filename="/Users/amirzaushnizer/Desktop/SPL1/Session.h">
+			<Option target="SPL1"/>
+		</Unit>
+		<Unit filename="/Users/amirzaushnizer/Desktop/SPL1/Tree.cpp">
 			<Option target="SPL1"/>
 		</Unit>
 		<Unit filename="/Users/amirzaushnizer/Desktop/SPL1/Tree.h">

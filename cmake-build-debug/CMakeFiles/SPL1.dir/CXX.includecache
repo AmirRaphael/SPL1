@@ -6,6 +6,10 @@
 
 #IncludeRegexTransform: 
 
+/Users/amirzaushnizer/Desktop/SPL1/Agent.h
+vector
+-
+
 /Users/amirzaushnizer/Desktop/SPL1/Graph.cpp
 Graph.h
 /Users/amirzaushnizer/Desktop/SPL1/Graph.h
@@ -21,8 +25,8 @@ vector
 -
 string
 -
-Graph.h
-/Users/amirzaushnizer/Desktop/SPL1/Graph.h
+Agent.h
+/Users/amirzaushnizer/Desktop/SPL1/Agent.h
 
 /Users/amirzaushnizer/Desktop/SPL1/Tree.h
 vector
@@ -35,4 +39,6 @@ iostream
 -
 Session.h
 /Users/amirzaushnizer/Desktop/SPL1/Session.h
+vector
+-
 

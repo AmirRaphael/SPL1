@@ -25,6 +25,15 @@ public:
     int dequeueInfected();
     TreeType getTreeType() const;
 
+    int getCycle() const;
+
+    const Graph &getG() const;
+
+    const std::vector<Agent *> &getAgents() const;
+
+
+protected:
+    int cycle;
 private:
     Graph g;
     TreeType treeType;

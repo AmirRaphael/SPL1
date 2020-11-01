@@ -103,19 +103,64 @@ CMakeFiles/SPL1.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/SPL1.dir/main.cpp.s"
 	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/amirzaushnizer/Desktop/SPL1/main.cpp -o CMakeFiles/SPL1.dir/main.cpp.s
 
+CMakeFiles/SPL1.dir/Tree.cpp.o: CMakeFiles/SPL1.dir/flags.make
+CMakeFiles/SPL1.dir/Tree.cpp.o: ../Tree.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/amirzaushnizer/Desktop/SPL1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/SPL1.dir/Tree.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/SPL1.dir/Tree.cpp.o -c /Users/amirzaushnizer/Desktop/SPL1/Tree.cpp
+
+CMakeFiles/SPL1.dir/Tree.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/SPL1.dir/Tree.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/amirzaushnizer/Desktop/SPL1/Tree.cpp > CMakeFiles/SPL1.dir/Tree.cpp.i
+
+CMakeFiles/SPL1.dir/Tree.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/SPL1.dir/Tree.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/amirzaushnizer/Desktop/SPL1/Tree.cpp -o CMakeFiles/SPL1.dir/Tree.cpp.s
+
+CMakeFiles/SPL1.dir/Session.cpp.o: CMakeFiles/SPL1.dir/flags.make
+CMakeFiles/SPL1.dir/Session.cpp.o: ../Session.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/amirzaushnizer/Desktop/SPL1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/SPL1.dir/Session.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/SPL1.dir/Session.cpp.o -c /Users/amirzaushnizer/Desktop/SPL1/Session.cpp
+
+CMakeFiles/SPL1.dir/Session.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/SPL1.dir/Session.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/amirzaushnizer/Desktop/SPL1/Session.cpp > CMakeFiles/SPL1.dir/Session.cpp.i
+
+CMakeFiles/SPL1.dir/Session.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/SPL1.dir/Session.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/amirzaushnizer/Desktop/SPL1/Session.cpp -o CMakeFiles/SPL1.dir/Session.cpp.s
+
+CMakeFiles/SPL1.dir/Agent.cpp.o: CMakeFiles/SPL1.dir/flags.make
+CMakeFiles/SPL1.dir/Agent.cpp.o: ../Agent.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/amirzaushnizer/Desktop/SPL1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/SPL1.dir/Agent.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/SPL1.dir/Agent.cpp.o -c /Users/amirzaushnizer/Desktop/SPL1/Agent.cpp
+
+CMakeFiles/SPL1.dir/Agent.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/SPL1.dir/Agent.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/amirzaushnizer/Desktop/SPL1/Agent.cpp > CMakeFiles/SPL1.dir/Agent.cpp.i
+
+CMakeFiles/SPL1.dir/Agent.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/SPL1.dir/Agent.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/amirzaushnizer/Desktop/SPL1/Agent.cpp -o CMakeFiles/SPL1.dir/Agent.cpp.s
+
 # Object files for target SPL1
 SPL1_OBJECTS = \
 "CMakeFiles/SPL1.dir/Graph.cpp.o" \
-"CMakeFiles/SPL1.dir/main.cpp.o"
+"CMakeFiles/SPL1.dir/main.cpp.o" \
+"CMakeFiles/SPL1.dir/Tree.cpp.o" \
+"CMakeFiles/SPL1.dir/Session.cpp.o" \
+"CMakeFiles/SPL1.dir/Agent.cpp.o"
 
 # External object files for target SPL1
 SPL1_EXTERNAL_OBJECTS =
 
 SPL1: CMakeFiles/SPL1.dir/Graph.cpp.o
 SPL1: CMakeFiles/SPL1.dir/main.cpp.o
+SPL1: CMakeFiles/SPL1.dir/Tree.cpp.o
+SPL1: CMakeFiles/SPL1.dir/Session.cpp.o
+SPL1: CMakeFiles/SPL1.dir/Agent.cpp.o
 SPL1: CMakeFiles/SPL1.dir/build.make
 SPL1: CMakeFiles/SPL1.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/amirzaushnizer/Desktop/SPL1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable SPL1"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/amirzaushnizer/Desktop/SPL1/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable SPL1"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/SPL1.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
