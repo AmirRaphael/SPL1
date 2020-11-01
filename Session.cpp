@@ -12,6 +12,6 @@ const Graph &Session::getG() const {
     return g;
 }
 
-const std::__1::vector<Agent *> &Session::getAgents() const {
+const std::vector<Agent *> &Session::getAgents() const {
     return agents;
 }

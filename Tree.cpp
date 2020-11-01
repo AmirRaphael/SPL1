@@ -35,7 +35,6 @@ Tree* Tree::createTree(const Session &session, int rootLabel) {
                 u->addChild(*child);
                 bfsQueue.push(child);
             }
-
         }
     }
     return tree;
