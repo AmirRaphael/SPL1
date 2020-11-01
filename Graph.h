@@ -11,6 +11,9 @@ public:
     Graph()=default;    // default constructor
     void infectNode(int nodeInd);
     bool isInfected(int nodeInd);
+
+    std::vector<int> getNeighbors(int nodeId) const;
+    int getSize() const;
 private:
     std::vector<std::vector<int>> edges;
     std::vector<bool> infected; // used to track which nodes are infected

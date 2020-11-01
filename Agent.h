@@ -2,8 +2,7 @@
 #define AGENT_H_
 
 #include <vector>
-
-class Session;
+#include "Session.h"
 //============Agent==============
 class Agent{
 public:
