@@ -2,12 +2,13 @@
 #define GRAPH_H_
 
 #include <vector>
-#include "Tree.h"
 
 class Graph{
 public:
     Graph(std::vector<std::vector<int>> matrix);
     Graph(const Graph &other);  // copy constructor
+    Graph& operator=(const Graph& other);   // copy assignment
+    Graph()=default;    // default constructor
     void infectNode(int nodeInd);
     bool isInfected(int nodeInd);
 private:
