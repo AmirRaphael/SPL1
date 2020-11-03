@@ -4,7 +4,8 @@ Graph::Graph(std::vector<std::vector<int>> matrix) : edges(matrix), infected(mat
 
 Graph::Graph(const Graph &other) : edges(other.edges), infected(other.infected) {}  // copy constructor
 
-Graph &Graph::operator=(const Graph &other) {
+Graph &Graph::operator=(const Graph &other) {   // copy assignment
+    if (this == &other) {return *this;}
     edges = other.edges;
     infected = other.infected;
     return *this;
@@ -30,3 +31,10 @@ std::vector<int> Graph::getNeighbors(int nodeId) const {
 
 int Graph::getSize() const{return edges.size();}
 
+void Graph::removeEdge(int node1, int node2) {
+    int matrixSize = getSize();
+    if (node1 < matrixSize && node2 < matrixSize){
+        edges[node1][node2] = 0;
+        edges[node2][node1] = 0;
+    }
+}
