@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <string>
+#include <queue>
 #include "Graph.h"
 
 class Agent;
@@ -24,20 +25,16 @@ public:
     void enqueueInfected(int);
     int dequeueInfected();
     TreeType getTreeType() const;
-
     int getCycle() const;
-
     const Graph &getG() const;
 
-    const std::vector<Agent *> &getAgents() const;
 
-
-protected:
-    int cycle;
 private:
     Graph g;
     TreeType treeType;
     std::vector<Agent*> agents;
+    std::queue<int> infectedQueue;
+    int cycle;
 };
 
 #endif

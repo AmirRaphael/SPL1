@@ -30,11 +30,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d38d8e23-d572-4be0-a26c-4f3c6a55b8e1" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/config1.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/json.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Agent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Agent.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Agent.h" beforeDir="false" afterPath="$PROJECT_DIR$/Agent.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Graph.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Graph.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Graph.h" beforeDir="false" afterPath="$PROJECT_DIR$/Graph.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Session.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Session.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Session.h" beforeDir="false" afterPath="$PROJECT_DIR$/Session.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Tree.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Tree.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tree.h" beforeDir="false" afterPath="$PROJECT_DIR$/Tree.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Progress/1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Progress/2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Progress/count.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/SPL1.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/SPL1.dir/CXX.includecache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/SPL1.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/SPL1.dir/depend.internal" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/SPL1.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/SPL1.dir/depend.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,14 +71,15 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="cf.first.check.clang-format" value="false" />
+    <property name="nodejs_package_manager_path" value="npm" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="SPL1" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="SPL1" TARGET_NAME="SPL1" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="SPL1" RUN_TARGET_NAME="SPL1">
+    <configuration name="SPL1" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="$PROJECT_DIR$/config1.json" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="SPL1" TARGET_NAME="SPL1" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="SPL1" RUN_TARGET_NAME="SPL1">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -88,6 +102,8 @@
       <workItem from="1604150281951" duration="1476000" />
       <workItem from="1604151822257" duration="3064000" />
       <workItem from="1604217667252" duration="17173000" />
+      <workItem from="1604317030735" duration="6650000" />
+      <workItem from="1604485167584" duration="16338000" />
     </task>
     <servers />
   </component>
@@ -107,18 +123,118 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="2741" y="143" key="#com.intellij.ide.util.MemberChooser" timestamp="1604239910424">
-      <screen x="1680" y="23" width="1920" height="1057" />
+    <state x="304" y="187" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1604318745441">
+      <screen x="0" y="0" width="1680" height="1050" />
     </state>
+    <state x="304" y="187" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1604318745441" />
+    <state x="627" y="237" key="#com.intellij.ide.macro.MacrosDialog" timestamp="1604318496443">
+      <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state x="627" y="237" key="#com.intellij.ide.macro.MacrosDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1604318496443" />
+    <state x="2741" y="122" key="#com.intellij.ide.util.MemberChooser" timestamp="1604507980379">
+      <screen x="1680" y="0" width="1920" height="1080" />
+    </state>
+    <state x="928" y="119" key="#com.intellij.ide.util.MemberChooser/0.0.1680.1050@0.0.1680.1050" timestamp="1604320432056" />
+    <state x="2741" y="122" key="#com.intellij.ide.util.MemberChooser/1680.0.1920.1080/0.0.1680.1050@1680.0.1920.1080" timestamp="1604507980379" />
     <state x="928" y="131" key="#com.intellij.ide.util.MemberChooser/1680.23.1920.1057/0.23.1680.949@0.23.1680.949" timestamp="1604233174158" />
     <state x="2741" y="143" key="#com.intellij.ide.util.MemberChooser/1680.23.1920.1057/0.23.1680.949@1680.23.1920.1057" timestamp="1604239910424" />
+    <state width="1878" height="403" key="GridCell.Tab.0.bottom" timestamp="1604518555694">
+      <screen x="1680" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1638" height="364" key="GridCell.Tab.0.bottom/0.0.1680.1050@0.0.1680.1050" timestamp="1604403960067" />
+    <state width="1878" height="403" key="GridCell.Tab.0.bottom/1680.0.1920.1080/0.0.1680.1050@1680.0.1920.1080" timestamp="1604518555694" />
+    <state width="1878" height="403" key="GridCell.Tab.0.center" timestamp="1604518555693">
+      <screen x="1680" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1638" height="364" key="GridCell.Tab.0.center/0.0.1680.1050@0.0.1680.1050" timestamp="1604403960066" />
+    <state width="1878" height="403" key="GridCell.Tab.0.center/1680.0.1920.1080/0.0.1680.1050@1680.0.1920.1080" timestamp="1604518555693" />
+    <state width="1878" height="403" key="GridCell.Tab.0.left" timestamp="1604518555692">
+      <screen x="1680" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1638" height="364" key="GridCell.Tab.0.left/0.0.1680.1050@0.0.1680.1050" timestamp="1604403960065" />
+    <state width="1878" height="403" key="GridCell.Tab.0.left/1680.0.1920.1080/0.0.1680.1050@1680.0.1920.1080" timestamp="1604518555692" />
+    <state width="1878" height="403" key="GridCell.Tab.0.right" timestamp="1604518555694">
+      <screen x="1680" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1638" height="364" key="GridCell.Tab.0.right/0.0.1680.1050@0.0.1680.1050" timestamp="1604403960066" />
+    <state width="1878" height="403" key="GridCell.Tab.0.right/1680.0.1920.1080/0.0.1680.1050@1680.0.1920.1080" timestamp="1604518555694" />
+    <state width="1878" height="403" key="GridCell.Tab.1.bottom" timestamp="1604518556806">
+      <screen x="1680" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1638" height="364" key="GridCell.Tab.1.bottom/0.0.1680.1050@0.0.1680.1050" timestamp="1604403960068" />
+    <state width="1878" height="403" key="GridCell.Tab.1.bottom/1680.0.1920.1080/0.0.1680.1050@1680.0.1920.1080" timestamp="1604518556806" />
+    <state width="1878" height="403" key="GridCell.Tab.1.center" timestamp="1604518556804">
+      <screen x="1680" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1638" height="364" key="GridCell.Tab.1.center/0.0.1680.1050@0.0.1680.1050" timestamp="1604403960067" />
+    <state width="1878" height="403" key="GridCell.Tab.1.center/1680.0.1920.1080/0.0.1680.1050@1680.0.1920.1080" timestamp="1604518556804" />
+    <state width="1878" height="403" key="GridCell.Tab.1.left" timestamp="1604518556803">
+      <screen x="1680" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1638" height="364" key="GridCell.Tab.1.left/0.0.1680.1050@0.0.1680.1050" timestamp="1604403960067" />
+    <state width="1878" height="403" key="GridCell.Tab.1.left/1680.0.1920.1080/0.0.1680.1050@1680.0.1920.1080" timestamp="1604518556803" />
+    <state width="1878" height="403" key="GridCell.Tab.1.right" timestamp="1604518556805">
+      <screen x="1680" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1638" height="364" key="GridCell.Tab.1.right/0.0.1680.1050@0.0.1680.1050" timestamp="1604403960068" />
+    <state width="1878" height="403" key="GridCell.Tab.1.right/1680.0.1920.1080/0.0.1680.1050@1680.0.1920.1080" timestamp="1604518556805" />
     <state x="638" y="446" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1604150500259">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="638" y="446" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/1680.0.1920.1080/0.0.1680.1050@0.0.1680.1050" timestamp="1604150500259" />
+    <state x="2424" y="333" key="refactoring.ChangeSignatureDialog" timestamp="1604514673392">
+      <screen x="1680" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2424" y="333" key="refactoring.ChangeSignatureDialog/1680.0.1920.1080/0.0.1680.1050@1680.0.1920.1080" timestamp="1604514673392" />
     <state x="505" y="231" width="670" height="676" key="search.everywhere.popup" timestamp="1604233053302">
       <screen x="0" y="23" width="1680" height="949" />
     </state>
     <state x="505" y="231" width="670" height="676" key="search.everywhere.popup/1680.23.1920.1057/0.23.1680.949@0.23.1680.949" timestamp="1604233053302" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/Graph.cpp</url>
+          <line>56</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/Session.cpp</url>
+          <line>37</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/Tree.cpp</url>
+          <line>51</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/Agent.cpp</url>
+          <line>41</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/Tree.cpp</url>
+          <line>157</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/Tree.cpp</url>
+          <line>164</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/Session.cpp</url>
+          <line>44</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="CMakeRunConfiguration">
+        <watch expression="this-&gt;agents[0]-&gt;Agent" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

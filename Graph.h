@@ -3,20 +3,25 @@
 
 #include <vector>
 
-
 class Graph{
 public:
-    Graph(std::vector<std::vector<int>> &matrix);
+    Graph(std::vector<std::vector<int>> matrix);
     Graph(const Graph &other);  // copy constructor
-    Graph()=default;
+    Graph& operator=(const Graph& other);   // copy assignment
+    Graph()=default;    // default constructor
     void infectNode(int nodeInd);
     bool isInfected(int nodeInd);
+
     std::vector<int> getNeighbors(int nodeId) const;
     int getSize() const;
+    void removeEdge(int node1, int node2);  // Used by contactTRacer [03/11]
+
+    bool condition();
 
 private:
     std::vector<std::vector<int>> edges;
     std::vector<bool> infected; // used to track which nodes are infected
+    bool dfsVisit(int i, bool sick, std::vector<char> &vector);
 };
 
 #endif
