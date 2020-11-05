@@ -5,7 +5,6 @@
 #include "Session.h"
 
 
-
 //============Tree==============
 class Tree{
 public:
@@ -15,19 +14,24 @@ public:
     virtual ~Tree();
 
     void addChild(const Tree& child);
+    void addChild(Tree *child);
     static Tree* createTree(const Session& session, int rootLabel);
-    static Tree* createChild(TreeType type,int label,int cycle);
     virtual int traceTree()=0;
     virtual Tree* clone() const=0;  // used in "addChild" method [03/11]
-    //static Tree* compare(Tree *node1, Tree *node2); // used in maxRankTree::traceTree()
-
     int getNode() const;    // Added getter
     const std::vector<Tree *> &getChildren() const;    // Added getter
+    void bfs(const Session &session);
+    static Tree* compare(Tree *node1, Tree *node2); // used in maxRankTree::traceTree()
+    int getTime() const;
+    int getDepth() const;
+    void setDepth(int _depth);
+protected:
+    int time;
+    int depth;
 private:
     int node;
     std::vector<Tree*> children;
-    //int depth;
-    //int time;
+
 };
 //============CycleTree==============
 class CycleTree: public Tree{
@@ -50,8 +54,8 @@ public:
     MaxRankTree(MaxRankTree &&other);   // move constructor [03/11]
     virtual ~MaxRankTree();
 
-    virtual int traceTree();
-    Tree* helper(); // todo: change name of func
+    virtual int traceTree();    //todo: Implement
+    Tree* maxChild(int depth); // todo: change name of func
     virtual Tree* clone() const;    // Added [03/11]
 };
 //============RootTree==============

@@ -38,6 +38,7 @@ ContactTracer::ContactTracer(const ContactTracer &other) : Agent(other.session) 
 void ContactTracer::act() {
     int infectedNode = session.dequeueInfected();
     Tree *pTreeRoot = Tree::createTree(session, infectedNode);
+    pTreeRoot->bfs(session);
     int isolateNode = pTreeRoot->traceTree();
     Graph graph(session.getG());    // todo: make sure this is efficient (maybe use move)
     std::vector<int> neighbors = graph.getNeighbors(isolateNode);

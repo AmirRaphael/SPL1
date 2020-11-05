@@ -38,3 +38,9 @@ void Graph::removeEdge(int node1, int node2) {
         edges[node2][node1] = 0;
     }
 }
+
+bool Graph::condition() {
+
+
+    return true;
+}

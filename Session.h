@@ -17,17 +17,17 @@ enum TreeType{
 class Session{
 public:
     Session(const std::string& path);
-
-    void simulate();
+    virtual ~Session();
+    void simulate();    //todo: Implement
     void addAgent(const Agent& agent);
     void setGraph(const Graph& graph);
-
     void enqueueInfected(int);
     int dequeueInfected();
     TreeType getTreeType() const;
     int getCycle() const;
     const Graph &getG() const;
-
+    const std::queue<int> &getInfectedQueue() const;
+    void createOutputJson(const std::vector<std::vector<int>> &gEdges, std::queue<int> infectedQ);
 
 private:
     Graph g;

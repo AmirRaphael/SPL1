@@ -11,10 +11,11 @@ public:
     Graph()=default;    // default constructor
     void infectNode(int nodeInd);
     bool isInfected(int nodeInd);
+    bool condition();   //todo: implement with DFS - returns True iff all vertices in each connected components are in the same status
 
     std::vector<int> getNeighbors(int nodeId) const;
     int getSize() const;
-    void removeEdge(int node1, int node2);  // Used by contactTRacer [03/11]
+    void removeEdge(int node1, int node2);  // Used by contactTracer [03/11]
 
 private:
     std::vector<std::vector<int>> edges;
