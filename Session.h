@@ -27,14 +27,16 @@ public:
     int getCycle() const;
     const Graph &getG() const;
     const std::queue<int> &getInfectedQueue() const;
-    void createOutputJson(const std::vector<std::vector<int>> &gEdges, std::queue<int> infectedQ);
-
+    void createOutputJson();
+    bool isCarrier(int nodeIndex);  //Added [6/11]
+    void makeCarrier(int nodeIndex);//Added [6/11]
 private:
     Graph g;
     TreeType treeType;
     std::vector<Agent*> agents;
     std::queue<int> infectedQueue;
     int cycle;
+    std::vector<bool> carriers;  // used to keep track which nodes carry a virus (including those which aren't infected)
 };
 
 #endif

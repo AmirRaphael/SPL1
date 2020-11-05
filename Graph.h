@@ -11,8 +11,9 @@ public:
     Graph()=default;    // default constructor
     void infectNode(int nodeInd);
     bool isInfected(int nodeInd);
-    bool condition();   //todo: implement with DFS - returns True iff all vertices in each connected components are in the same status
+    bool condition();
 
+    const std::vector<std::vector<int>> &getEdges() const;
     std::vector<int> getNeighbors(int nodeId) const;
     int getSize() const;
     void removeEdge(int node1, int node2);  // Used by contactTracer [03/11]
@@ -20,6 +21,7 @@ public:
 private:
     std::vector<std::vector<int>> edges;
     std::vector<bool> infected; // used to track which nodes are infected
+    bool dfsVisit(int i, bool sick, std::vector<char> &vector);
 };
 
 #endif

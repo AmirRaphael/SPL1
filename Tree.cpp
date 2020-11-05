@@ -45,6 +45,7 @@ void Tree::bfs(const Session &session) {
     bfsQueue.push(this);
     int count = 0;
     std::vector<bool> visited (graph.getSize(), false); // array that keeps track of visited nodes in the bfs algorithm.
+    visited[this->getNode()] = true;
     while (!(bfsQueue.empty())){
         Tree* u = bfsQueue.front();
         u->time = count;
@@ -144,8 +145,8 @@ MaxRankTree::MaxRankTree(MaxRankTree &&other) : Tree(std::move(other)) {}
 
 MaxRankTree::~MaxRankTree() {}
 
-int MaxRankTree::traceTree() {  // todo: Implement
-    Tree *maxNode = compare(this, this->maxChild(1));
+int MaxRankTree::traceTree() {
+    Tree* maxNode = this->maxChild(1);
     return maxNode->getNode();
 }
 
@@ -153,13 +154,13 @@ Tree* MaxRankTree::maxChild(int depth) {
     if (this->getChildren().empty()){
         return this;
     } else {
-        Tree *maxNode = this;
+        Tree *maxNode = this->getChildren()[0];
         for(auto child : this->getChildren()){
             child->setDepth(depth);
             Tree *pMaxChild = dynamic_cast<MaxRankTree *>(child)->maxChild(depth + 1);  // todo: check about casting
-            maxNode = compare(this, pMaxChild);
+            maxNode = compare(maxNode, pMaxChild);
         }
-        return maxNode;
+        return compare(this,maxNode);
     }
 }
 

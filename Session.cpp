@@ -6,7 +6,7 @@
 
 using json = nlohmann::json;
 
-Session::Session(const std::string &path) : g(), treeType(), agents(), infectedQueue(), cycle(0) {   //Added member init list [02/11]
+Session::Session(const std::string &path) : g(), treeType(), agents(), infectedQueue(), cycle(0), carriers() {   //Added: member init list [02/11] , carriers() [6/11]
     json j;
     std::ifstream i(path);
     i >> j;
@@ -32,6 +32,8 @@ Session::Session(const std::string &path) : g(), treeType(), agents(), infectedQ
     }
     Graph graph(gMatrix);
     g = graph; //Copy assignment
+    //init carriers vector
+    carriers = std::vector<bool>(gSize, false);
 }
 
 Session::~Session() {
@@ -52,25 +54,25 @@ void Session::simulate() {
     }
     createOutputJson();
 }
-//todo: implement
-/*void Session::createOutputJson(const std::vector<std::vector<int>> &gEdges, std::queue<int> infectedQ) {
+
+void Session::createOutputJson() {
     json jOutput;
     jOutput["graph"] = {};
-    size_t gSize = gEdges.size();
+    const std::vector<std::vector<int>> &gEdges = g.getEdges();
+    size_t gSize = g.getSize();
     for (size_t i = 0; i < gSize; ++i) {
         for (size_t j = 0; j < gSize; ++j) {
             jOutput["graph"][i][j] = gEdges[i][j];
         }
     }
     jOutput["infected"] = {};
-    size_t qSize = infectedQ.size();
-    for (int i = 0; i < qSize; ++i) {
-        jOutput["infected"][i] = infectedQ.front();
-        infectedQ.pop();
+    for (int nodeIndex = 0; nodeIndex < gSize; ++nodeIndex) {
+        if (g.isInfected(nodeIndex))
+            jOutput["infected"].push_back(nodeIndex);
     }
-    std::ofstream o("output.json");
+    std::ofstream o("./output.json");
     o << jOutput << std::endl;
-}*/
+}
 
 int Session::getCycle() const {
     return cycle;
@@ -105,4 +107,12 @@ TreeType Session::getTreeType() const {
 
 const std::queue<int> &Session::getInfectedQueue() const {
     return infectedQueue;
+}
+
+bool Session::isCarrier(int nodeIndex) {    //Added [6/11]
+    return carriers[nodeIndex];
+}
+
+void Session::makeCarrier(int nodeIndex) {  //Added [6/11]
+    carriers[nodeIndex] = true;
 }

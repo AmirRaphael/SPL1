@@ -3,10 +3,14 @@
 
 Agent::Agent(Session &session) : session(session){}
 
+Agent::~Agent() {}
+
 //================Virus======================
 Virus::Virus(int nodeInd, Session &session): Agent(session),nodeInd(nodeInd) {}
 
 Virus::Virus(const Virus &other) : Agent(other.session), nodeInd(other.nodeInd) {}  // copy constructor [03/11]
+
+Virus::~Virus(){}
 
 void Virus::act() {
     Graph graph (session.getG());   // todo: make sure this is efficient (maybe use move)
@@ -16,9 +20,11 @@ void Virus::act() {
     }
     std::vector<int> neighbors = graph.getNeighbors(nodeInd);
     for(auto n : neighbors){
-        if (!graph.isInfected(n)){
+        //if (!graph.isInfected(n)){  //logic problem - condition is necessary but not enough to invoke a creation of a new "copy Virus"
+        if (!graph.isInfected(n) && !session.isCarrier(n)){
             Virus copyVirus(n,session);
             session.addAgent(copyVirus);
+            session.makeCarrier(n);
             break;
         }
     }
@@ -35,17 +41,22 @@ ContactTracer::ContactTracer(Session &session) : Agent(session) {}
 
 ContactTracer::ContactTracer(const ContactTracer &other) : Agent(other.session) {}
 
+ContactTracer::~ContactTracer() {}
+
 void ContactTracer::act() {
-    int infectedNode = session.dequeueInfected();
-    Tree *pTreeRoot = Tree::createTree(session, infectedNode);
-    pTreeRoot->bfs(session);
-    int isolateNode = pTreeRoot->traceTree();
-    Graph graph(session.getG());    // todo: make sure this is efficient (maybe use move)
-    std::vector<int> neighbors = graph.getNeighbors(isolateNode);
-    for (auto neighbor : neighbors){
-        graph.removeEdge(isolateNode, neighbor);
+    if(!session.getInfectedQueue().empty()) {
+        int infectedNode = session.dequeueInfected();
+        Tree *pTreeRoot = Tree::createTree(session, infectedNode);
+        pTreeRoot->bfs(session);
+        int isolateNode = pTreeRoot->traceTree();
+        delete pTreeRoot;
+        Graph graph(session.getG());    // todo: make sure this is efficient (maybe use move)
+        std::vector<int> neighbors = graph.getNeighbors(isolateNode);
+        for (auto neighbor : neighbors) {
+            graph.removeEdge(isolateNode, neighbor);
+        }
+        session.setGraph(graph);
     }
-    session.setGraph(graph);
 }
 
 Agent *ContactTracer::clone() const {

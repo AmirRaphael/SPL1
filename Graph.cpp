@@ -40,7 +40,37 @@ void Graph::removeEdge(int node1, int node2) {
 }
 
 bool Graph::condition() {
+    int size = this->getSize();
+    bool check {true};
+    std::vector<char> color (size,'w');
+    for (int i {0};i<size && check;++i){
+        if (color[i]=='w'){
+            bool sick {isInfected(i)};
+            check = dfsVisit(i,sick,color);
+        }
+    }
+    return check;
+}
 
+bool Graph::dfsVisit(int i, bool sick, std::vector<char> &color) {  //Changed implementation
+    color[i] = 'g';
+    bool bContinueDfs;
+    if (isInfected(i) != sick){
+        bContinueDfs = false;
+    } else {
+        bContinueDfs = true;
+        std::vector<int> neighbors(this->getNeighbors(i));
+        for (auto node : neighbors){
+            if (color[node]=='w'){
+                bContinueDfs = dfsVisit(node, sick, color);
+                if (!bContinueDfs) break;
+            }
+        }
+    }
+    color[i]='b';
+    return bContinueDfs;
+}
 
-    return true;
+const std::vector<std::vector<int>> &Graph::getEdges() const {
+    return edges;
 }
