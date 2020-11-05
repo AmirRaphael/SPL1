@@ -3,6 +3,10 @@
 
 Agent::Agent(Session &session) : session(session){}
 
+Agent::~Agent() {
+
+}
+
 //================Virus======================
 Virus::Virus(int nodeInd, Session &session): Agent(session),nodeInd(nodeInd) {}
 
@@ -29,6 +33,11 @@ Agent *Virus::clone() const { // creates a copy of the object on the heap and re
     Agent *pClone = new Virus(*this);
     return pClone;
 }
+
+Virus::~Virus() {
+
+}
+
 //===========================================
 //=============ContactTracer=================
 ContactTracer::ContactTracer(Session &session) : Agent(session) {}
@@ -36,21 +45,29 @@ ContactTracer::ContactTracer(Session &session) : Agent(session) {}
 ContactTracer::ContactTracer(const ContactTracer &other) : Agent(other.session) {}
 
 void ContactTracer::act() {
-    int infectedNode = session.dequeueInfected();
-    Tree *pTreeRoot = Tree::createTree(session, infectedNode);
-    pTreeRoot->bfs(session);
-    int isolateNode = pTreeRoot->traceTree();
-    Graph graph(session.getG());    // todo: make sure this is efficient (maybe use move)
-    std::vector<int> neighbors = graph.getNeighbors(isolateNode);
-    for (auto neighbor : neighbors){
-        graph.removeEdge(isolateNode, neighbor);
+    if(!session.getInfectedQueue().empty()){
+        int infectedNode = session.dequeueInfected();
+        Tree *pTreeRoot = Tree::createTree(session, infectedNode);
+        pTreeRoot->bfs(session);
+        int isolateNode = pTreeRoot->traceTree();
+        delete pTreeRoot;
+        Graph graph(session.getG());    // todo: make sure this is efficient (maybe use move)
+        std::vector<int> neighbors = graph.getNeighbors(isolateNode);
+        for (auto neighbor : neighbors){
+            graph.removeEdge(isolateNode, neighbor);
+        }
+        session.setGraph(graph);
     }
-    session.setGraph(graph);
+
 }
 
 Agent *ContactTracer::clone() const {
     Agent *pClone = new ContactTracer(*this);
     return pClone;
+}
+
+ContactTracer::~ContactTracer() {
+
 }
 
 

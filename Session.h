@@ -28,6 +28,10 @@ public:
     int getCycle() const;
     const Graph &getG() const;
 
+    virtual ~Session();
+
+    const std::queue<int> &getInfectedQueue() const;
+
 
 private:
     Graph g;

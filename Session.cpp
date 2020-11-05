@@ -42,6 +42,7 @@ void Session::simulate() {
             agents[i]->act();
         }
         terminate= g.condition();
+        cycle++;
     }
 
 }
@@ -75,4 +76,15 @@ int Session::dequeueInfected() {
 
 TreeType Session::getTreeType() const {
     return treeType;
+}
+
+const std::queue<int> &Session::getInfectedQueue() const {
+    return infectedQueue;
+}
+
+Session::~Session() {
+    for(auto agent : agents){
+        delete agent;
+    }
+
 }
