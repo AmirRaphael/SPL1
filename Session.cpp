@@ -15,6 +15,7 @@ Session::Session(const std::string &path) : g(), treeType(), agents(), infectedQ
     if (type == "C") treeType = Cycle;
     else if (type == "M") treeType = MaxRank;
     else treeType = Root;
+    //set graph
     int gSize = (int)j["graph"].size();
     std::vector<std::vector<int>> gMatrix(gSize,std::vector<int>(gSize,-1));
     for (int k = 0; k < gSize; ++k) {
@@ -33,7 +34,7 @@ Session::Session(const std::string &path) : g(), treeType(), agents(), infectedQ
         } else {
             agents.push_back(new ContactTracer());
         }
-    }// set Graph
+    }
 
 
 }
