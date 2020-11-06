@@ -15,14 +15,6 @@ Session::Session(const std::string &path) : g(), treeType(), agents(), infectedQ
     if (type == "C") treeType = Cycle;
     else if (type == "M") treeType = MaxRank;
     else treeType = Root;
-    // set Agents
-    for (auto item : j["agents"]){
-        if (item[0] == "V"){
-            agents.push_back(new Virus(item[1]));
-        } else {
-            agents.push_back(new ContactTracer());
-        }
-    }// set Graph
     int gSize = (int)j["graph"].size();
     std::vector<std::vector<int>> gMatrix(gSize,std::vector<int>(gSize,-1));
     for (int k = 0; k < gSize; ++k) {
@@ -30,10 +22,20 @@ Session::Session(const std::string &path) : g(), treeType(), agents(), infectedQ
             gMatrix[k][l] = j["graph"][k][l];
         }
     }
+    carriers = std::vector<bool>(gSize, false);
     Graph graph(gMatrix);
     g = graph; //Copy assignment
-    //init carriers vector
-    carriers = std::vector<bool>(gSize, false);
+    // set Agents
+    for (auto item : j["agents"]){
+        if (item[0] == "V"){
+            agents.push_back(new Virus(item[1]));
+            carriers[(int)item[1]]=true;
+        } else {
+            agents.push_back(new ContactTracer());
+        }
+    }// set Graph
+
+
 }
 
 Session::~Session() {

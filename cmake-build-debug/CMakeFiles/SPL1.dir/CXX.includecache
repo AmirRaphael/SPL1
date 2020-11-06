@@ -6,12 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/Users/amirzaushnizer/Desktop/SPL1/Agent.cpp
-Agent.h
-/Users/amirzaushnizer/Desktop/SPL1/Agent.h
-Tree.h
-/Users/amirzaushnizer/Desktop/SPL1/Tree.h
-
 /Users/amirzaushnizer/Desktop/SPL1/Agent.h
 vector
 -
@@ -43,12 +37,6 @@ queue
 -
 Graph.h
 /Users/amirzaushnizer/Desktop/SPL1/Graph.h
-
-/Users/amirzaushnizer/Desktop/SPL1/Tree.h
-vector
--
-Session.h
-/Users/amirzaushnizer/Desktop/SPL1/Session.h
 
 /Users/amirzaushnizer/Desktop/SPL1/json.hpp
 algorithm
