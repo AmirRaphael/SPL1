@@ -2,7 +2,7 @@
 
 Graph::Graph(std::vector<std::vector<int>> matrix) : edges(matrix), infected(matrix.size(), false) {}
 
-Graph::Graph(const Graph &other)  = default;  // copy constructor
+Graph::Graph(const Graph &other) : edges(other.edges), infected(other.infected) {}  // copy constructor
 
 Graph &Graph::operator=(const Graph &other) {   // copy assignment
     if (this == &other) {return *this;}
@@ -50,18 +50,27 @@ bool Graph::condition() {
         }
     }
     return check;
-
 }
 
-bool Graph::dfsVisit(int i, bool sick, std::vector<char> &color) {
+bool Graph::dfsVisit(int i, bool sick, std::vector<char> &color) {  //Changed implementation
     color[i] = 'g';
-    std::vector<int> neighbors(this->getNeighbors(i));
-    for (auto node : neighbors ){
-        if (color[node]=='w'){
-            if(sick!=isInfected(node)) return false;
-            else dfsVisit(node,sick,color);
+    bool bContinueDfs;
+    if (isInfected(i) != sick){
+        bContinueDfs = false;
+    } else {
+        bContinueDfs = true;
+        std::vector<int> neighbors(this->getNeighbors(i));
+        for (auto node : neighbors){
+            if (color[node]=='w'){
+                bContinueDfs = dfsVisit(node, sick, color);
+                if (!bContinueDfs) break;
+            }
         }
     }
     color[i]='b';
-    return true;
+    return bContinueDfs;
+}
+
+const std::vector<std::vector<int>> &Graph::getEdges() const {
+    return edges;
 }

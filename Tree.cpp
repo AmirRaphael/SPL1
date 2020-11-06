@@ -2,11 +2,44 @@
 #include "Session.h"
 #include <queue>
 
-Tree::Tree(int rootLabel) : node(rootLabel), children(),time(-1),depth(0){}  // Added member init list [03/11]
+Tree::Tree(int rootLabel) : node(rootLabel), children(), time(-1), depth(0) {}  // Added member init list [03/11]
 
-Tree::Tree(const Tree &other) : node(other.node), children(other.children) ,time(other.time),depth(other.depth) {}   // copy constructor [03/11] // amir - need to do deep copy of the children.
+Tree::Tree(const Tree &other) : node(other.node), time(other.time), depth(other.depth) {
+    for (auto child : other.children) {
+        addChild(*child); // -used original addchild.
+    }
+}
 
-Tree::Tree(Tree &&other) : node(std::move(other.node)), children(std::move(other.children)) {}  // move constructor
+Tree::Tree(Tree &&other) : node(other.node), time(other.time), depth(other.depth) {
+    for (auto child : other.children) {
+        Tree* pChild = child;
+        children.push_back(pChild);
+        child = nullptr;
+    }
+}  // move constructor - change
+
+const Tree &Tree::operator=(const Tree &other) {
+    node = other.node;
+    time = other.time;
+    depth = other.depth;
+    for (auto child : other.children) {
+        addChild(*child); // -used original addchild.
+    }
+    return *this;
+
+}
+const Tree &Tree::operator=(const Tree &&other) {
+    node = other.node;
+    time = other.time;
+    depth = other.depth;
+    for (auto child : other.children) {
+        Tree* pChild = child;
+        children.push_back(pChild);
+        child = nullptr;
+    }
+    return *this;
+
+}
 
 Tree::~Tree() {
     for (auto subTree : children){
@@ -19,10 +52,13 @@ void Tree::addChild(const Tree &child) {
     children.push_back(pTree);
 }
 
+void Tree::addChild(Tree *child) {
+    children.push_back(child);
+}
+
 Tree* Tree::createTree(const Session &session, int rootLabel) {
     Tree *tree;
-    TreeType type = session.getTreeType();
-    switch (type) {
+    switch (session.getTreeType()) {
         case Cycle:
             tree = new CycleTree(rootLabel, session.getCycle());
             break;
@@ -36,24 +72,11 @@ Tree* Tree::createTree(const Session &session, int rootLabel) {
     return tree;
 }
 
-int Tree::getNode() const {
-    return node;
-}
-
-const std::vector<Tree *> &Tree::getChildren() const {
-    return children;
-}
-
-void Tree::addChild(Tree *child) {
-    this->children.push_back(child);
-}
-
 void Tree::bfs(const Session &session) {
     const Graph &graph = session.getG();
-    // BFS algorithm
     std::queue<Tree*> bfsQueue;
     bfsQueue.push(this);
-    int count {0};
+    int count = 0;
     std::vector<bool> visited (graph.getSize(), false); // array that keeps track of visited nodes in the bfs algorithm.
     visited[this->getNode()] = true;
     while (!(bfsQueue.empty())){
@@ -64,14 +87,29 @@ void Tree::bfs(const Session &session) {
         for(auto n : neighbors){
             if (!visited[n]){
                 visited[n]=true;
-                Tree *child = createTree(session,n);
+                Tree *child = createTree(session, n);
                 u->addChild(child);
                 bfsQueue.push(child);
             }
         }
-        ++count;
+        count++;
     }
+}
 
+int Tree::getNode() const {
+    return node;
+}
+
+const std::vector<Tree *> &Tree::getChildren() const {
+    return children;
+}
+
+int Tree::getTime() const {
+    return time;
+}
+
+int Tree::getDepth() const {
+    return depth;
 }
 
 Tree *Tree::compare(Tree *node1, Tree *node2) {
@@ -83,14 +121,14 @@ Tree *Tree::compare(Tree *node1, Tree *node2) {
             } else {
                 return node2;
             }
-        } else {
+        } else { // node1->depth != node2->depth
             if (node1->getDepth() < node2->getDepth()){
                 return node1;
             } else {
                 return node2;
             }
         }
-    } else {
+    } else { // node1->size != node2->size
         if (node1->getChildren().size() > node2->getChildren().size()){
             return node1;
         } else {
@@ -99,17 +137,11 @@ Tree *Tree::compare(Tree *node1, Tree *node2) {
     }
 }
 
-int Tree::getTime() const {
-    return time;
-}
-
-int Tree::getDepth() const {
-    return depth;
-}
-
 void Tree::setDepth(int _depth) {
     Tree::depth = _depth;
 }
+
+
 
 //=====================CycleTree====================
 CycleTree::CycleTree(int rootLabel, int currCycle) : Tree(rootLabel), currCycle(currCycle) {}
@@ -148,8 +180,7 @@ MaxRankTree::MaxRankTree(MaxRankTree &&other) : Tree(std::move(other)) {}
 
 MaxRankTree::~MaxRankTree() {}
 
-int MaxRankTree::traceTree() {  // todo: Implement
-//    Tree *maxNode = compare(this, this->maxChild(1));
+int MaxRankTree::traceTree() {
     Tree* maxNode = this->maxChild(1);
     return maxNode->getNode();
 }

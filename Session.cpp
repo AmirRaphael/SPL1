@@ -6,7 +6,7 @@
 
 using json = nlohmann::json;
 
-Session::Session(const std::string &path) : g(), treeType(), agents(), infectedQueue(), cycle(0) {   //Added member init list [02/11]
+Session::Session(const std::string &path) : g(), treeType(), agents(), infectedQueue(), cycle(0), carriers() {   //Added: member init list [02/11] , carriers() [6/11]
     json j;
     std::ifstream i(path);
     i >> j;
@@ -18,9 +18,9 @@ Session::Session(const std::string &path) : g(), treeType(), agents(), infectedQ
     // set Agents
     for (auto item : j["agents"]){
         if (item[0] == "V"){
-            agents.push_back(new Virus(item[1], *this));
+            agents.push_back(new Virus(item[1]));
         } else {
-            agents.push_back(new ContactTracer(*this));
+            agents.push_back(new ContactTracer());
         }
     }// set Graph
     int gSize = (int)j["graph"].size();
@@ -32,6 +32,14 @@ Session::Session(const std::string &path) : g(), treeType(), agents(), infectedQ
     }
     Graph graph(gMatrix);
     g = graph; //Copy assignment
+    //init carriers vector
+    carriers = std::vector<bool>(gSize, false);
+}
+
+Session::~Session() {
+    for (auto agent : agents) {
+        delete agent;
+    }
 }
 
 void Session::simulate() {
@@ -39,12 +47,31 @@ void Session::simulate() {
     while (!terminate){
         size_t numOfAgents {agents.size()};
         for(size_t i {0};i<numOfAgents;++i){
-            agents[i]->act();
+            agents[i]->act(*this);
         }
-        terminate= g.condition();
+        terminate = g.condition();
         cycle++;
     }
+    createOutputJson();
+}
 
+void Session::createOutputJson() {
+    json jOutput;
+    jOutput["graph"] = {};
+    const std::vector<std::vector<int>> &gEdges = g.getEdges();
+    size_t gSize = g.getSize();
+    for (size_t i = 0; i < gSize; ++i) {
+        for (size_t j = 0; j < gSize; ++j) {
+            jOutput["graph"][i][j] = gEdges[i][j];
+        }
+    }
+    jOutput["infected"] = {};
+    for (int nodeIndex = 0; nodeIndex < gSize; ++nodeIndex) {
+        if (g.isInfected(nodeIndex))
+            jOutput["infected"].push_back(nodeIndex);
+    }
+    std::ofstream o("./output.json");
+    o << jOutput << std::endl;
 }
 
 int Session::getCycle() const {
@@ -82,9 +109,52 @@ const std::queue<int> &Session::getInfectedQueue() const {
     return infectedQueue;
 }
 
-Session::~Session() {
-    for(auto agent : agents){
-        delete agent;
+bool Session::isCarrier(int nodeIndex) {    //Added [6/11]
+    return carriers[nodeIndex];
+}
+
+void Session::makeCarrier(int nodeIndex) {  //Added [6/11]
+    carriers[nodeIndex] = true;
+}
+
+Session::Session(const Session &other) : g(other.g),treeType(other.treeType),infectedQueue(other.infectedQueue),cycle(other.cycle){
+    for(auto agent : other.agents) {
+        addAgent(*agent);
     }
 
+
 }
+
+Session::Session(const Session &&other) : g(other.g),treeType(other.treeType),infectedQueue(other.infectedQueue),cycle(other.cycle){
+    for(auto agent : other.agents) {
+        Agent* pAgent = agent;
+        agents.push_back(pAgent);
+        agent = nullptr;
+    }
+}
+
+const Session &Session::operator=(const Session &other) {
+    g = other.g;
+    treeType=other.treeType;
+    infectedQueue=other.infectedQueue;
+    cycle=other.cycle;
+    for(auto agent : other.agents) {
+        addAgent(*agent);
+    }
+    return *this;
+}
+
+const Session &Session::operator=(Session &&other) {
+    g = other.g;
+    treeType=other.treeType;
+    infectedQueue=other.infectedQueue;
+    cycle=other.cycle;
+    for(auto agent : other.agents) {
+        Agent* pAgent = agent;
+        agents.push_back(pAgent);
+        agent = nullptr;
+    }
+    return *this;
+}
+
+

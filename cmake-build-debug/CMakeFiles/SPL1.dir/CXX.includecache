@@ -44,14 +44,6 @@ queue
 Graph.h
 /Users/amirzaushnizer/Desktop/SPL1/Graph.h
 
-/Users/amirzaushnizer/Desktop/SPL1/Tree.cpp
-Tree.h
-/Users/amirzaushnizer/Desktop/SPL1/Tree.h
-Session.h
-/Users/amirzaushnizer/Desktop/SPL1/Session.h
-queue
--
-
 /Users/amirzaushnizer/Desktop/SPL1/Tree.h
 vector
 -
@@ -390,13 +382,5 @@ cstring
 limits
 -
 type_traits
--
-
-/Users/amirzaushnizer/Desktop/SPL1/main.cpp
-iostream
--
-Session.h
-/Users/amirzaushnizer/Desktop/SPL1/Session.h
-vector
 -
 

@@ -1,3 +1,4 @@
+
 #ifndef GRAPH_H_
 #define GRAPH_H_
 
@@ -11,12 +12,12 @@ public:
     Graph()=default;    // default constructor
     void infectNode(int nodeInd);
     bool isInfected(int nodeInd);
+    bool condition();
 
+    const std::vector<std::vector<int>> &getEdges() const;
     std::vector<int> getNeighbors(int nodeId) const;
     int getSize() const;
-    void removeEdge(int node1, int node2);  // Used by contactTRacer [03/11]
-
-    bool condition();
+    void removeEdge(int node1, int node2);  // Used by contactTracer [03/11]
 
 private:
     std::vector<std::vector<int>> edges;
