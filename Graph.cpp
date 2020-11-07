@@ -1,8 +1,11 @@
 #include "Graph.h"
 
+
 Graph::Graph(std::vector<std::vector<int>> matrix) : edges(matrix), infected(matrix.size(), false) {}
 
+
 Graph::Graph(const Graph &other) : edges(other.edges), infected(other.infected) {}  // copy constructor
+
 
 Graph &Graph::operator=(const Graph &other) {   // copy assignment
     if (this == &other) {return *this;}
@@ -11,13 +14,16 @@ Graph &Graph::operator=(const Graph &other) {   // copy assignment
     return *this;
 }
 
+
 void Graph::infectNode(int nodeInd) {
     infected[nodeInd] = true;
 }
 
+
 bool Graph::isInfected(int nodeInd) {
     return infected[nodeInd];
 }
+
 
 std::vector<int> Graph::getNeighbors(int nodeId) const {
     std::vector<int> neighbors {};
@@ -29,7 +35,9 @@ std::vector<int> Graph::getNeighbors(int nodeId) const {
     return neighbors;
 }
 
+
 int Graph::getSize() const{return edges.size();}
+
 
 void Graph::removeEdge(int node1, int node2) {
     int matrixSize = getSize();
@@ -38,6 +46,7 @@ void Graph::removeEdge(int node1, int node2) {
         edges[node2][node1] = 0;
     }
 }
+
 
 bool Graph::condition() {
     int size = this->getSize();
@@ -51,6 +60,7 @@ bool Graph::condition() {
     }
     return check;
 }
+
 
 bool Graph::dfsVisit(int i, bool sick, std::vector<char> &color) {  //Changed implementation
     color[i] = 'g';
@@ -70,6 +80,7 @@ bool Graph::dfsVisit(int i, bool sick, std::vector<char> &color) {  //Changed im
     color[i]='b';
     return bContinueDfs;
 }
+
 
 const std::vector<std::vector<int>> &Graph::getEdges() const {
     return edges;

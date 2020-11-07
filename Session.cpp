@@ -142,7 +142,7 @@ Session::Session(const Session &other) : g(other.g), treeType(other.treeType), i
 }
 
 
-Session::Session(const Session &&other) : g(other.g),treeType(other.treeType),infectedQueue(other.infectedQueue),cycle(other.cycle),carriers(other.carriers){
+Session::Session(const Session &&other) : g(other.g), treeType(other.treeType), infectedQueue(other.infectedQueue), cycle(other.cycle), carriers(other.carriers){
     for(auto agent : other.agents) {
         Agent* pAgent = agent;
         agents.push_back(pAgent);

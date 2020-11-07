@@ -9,8 +9,10 @@
 class Tree{
 public:
     Tree(int rootLabel);
-    Tree(const Tree &other);   // copy constructor [03/11]
-    Tree(Tree &&other);        // move constructor [03/11]
+    Tree(const Tree &other);   // copy constructor [06/11]
+    Tree(Tree &&other);        // move constructor [06/11]
+    const Tree& operator=(const Tree& other); // copy assignment
+    const Tree& operator=(const Tree&& other); // move assignment
     virtual ~Tree();
 
     void addChild(const Tree& child);
