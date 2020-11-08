@@ -3,16 +3,16 @@
 #include <queue>
 
 
-Tree::Tree(int rootLabel) : node(rootLabel), children(), time(-1), depth(0) {}  // Added member init list [03/11]
+Tree::Tree(int rootLabel) : time(-1), depth(0), node(rootLabel), children() {}
 
 
-Tree::Tree(const Tree &other) : node(other.node), time(other.time), depth(other.depth) {
+Tree::Tree(const Tree &other) : time(other.time), depth(other.depth), node(other.node), children() {
     for (auto child : other.children) {
         addChild(*child); // -used original addchild.
     }
 }
 
-Tree::Tree(Tree &&other) : node(other.node), time(other.time), depth(other.depth) {
+Tree::Tree(Tree &&other) :  time(other.time), depth(other.depth), node(other.node), children() {
     for (auto child : other.children) {
         Tree* pChild = child;
         children.push_back(pChild);
@@ -22,9 +22,9 @@ Tree::Tree(Tree &&other) : node(other.node), time(other.time), depth(other.depth
 
 
 const Tree &Tree::operator=(const Tree &other) {
-    node = other.node;
     time = other.time;
     depth = other.depth;
+    node = other.node;
     for (auto child : children){
         delete child;
     }
@@ -36,9 +36,9 @@ const Tree &Tree::operator=(const Tree &other) {
 }
 
 const Tree &Tree::operator=(const Tree &&other) {
-    node = other.node;
     time = other.time;
     depth = other.depth;
+    node = other.node;
     for (auto child : children){
         delete child;
     }

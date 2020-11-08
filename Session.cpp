@@ -8,7 +8,7 @@
 using json = nlohmann::json;
 
 
-Session::Session(const std::string &path) : g(), treeType(), agents(), infectedQueue(), cycle(0), carriers() {   //Added: member init list [02/11] , carriers() [6/11]
+Session::Session(const std::string &path) : g(), treeType(), agents(), infectedQueue(), carriers(), cycle(0) {
     json j;
     std::ifstream i(path);
     i >> j;
@@ -40,6 +40,56 @@ Session::Session(const std::string &path) : g(), treeType(), agents(), infectedQ
     }
 }
 
+Session::Session(const Session &other) : g(other.g), treeType(other.treeType), agents(), infectedQueue(other.infectedQueue), carriers(other.carriers), cycle(other.cycle){
+    for(auto agent : other.agents) {
+        addAgent(*agent);
+    }
+}
+
+
+Session::Session(const Session &&other) : g(other.g), treeType(other.treeType), agents(), infectedQueue(other.infectedQueue), carriers(other.carriers), cycle(other.cycle){
+    for(auto agent : other.agents) {
+        Agent* pAgent = agent;
+        agents.push_back(pAgent);
+        agent = nullptr;
+    }
+}
+
+
+const Session &Session::operator=(const Session &other) {
+    g = other.g;
+    treeType = other.treeType;
+    infectedQueue = other.infectedQueue;
+    carriers = other.carriers;
+    cycle = other.cycle;
+    for (auto agent : agents){
+        delete agent;
+    }
+    agents.clear();
+    for (auto otherAgent : other.agents) {
+        addAgent(*otherAgent);
+    }
+    return *this;
+}
+
+
+const Session &Session::operator=(Session &&other) {
+    g = other.g;
+    treeType = other.treeType;
+    infectedQueue = other.infectedQueue;
+    carriers = other.carriers;
+    cycle = other.cycle;
+    for (auto agent : agents){
+        delete agent;
+    }
+    agents.clear();
+    for(auto otherAgent : other.agents) {
+        Agent* pAgent = otherAgent;
+        agents.push_back(pAgent);
+        otherAgent = nullptr;
+    }
+    return *this;
+}
 
 Session::~Session() {
     for (auto agent : agents) {
@@ -132,56 +182,4 @@ bool Session::isCarrier(int nodeIndex) const {    //Added [6/11]
 
 void Session::makeCarrier(int nodeIndex) {  //Added [6/11]
     carriers[nodeIndex] = true;
-}
-
-
-Session::Session(const Session &other) : g(other.g), treeType(other.treeType), infectedQueue(other.infectedQueue), cycle(other.cycle), carriers(other.carriers), agents(){
-    for(auto agent : other.agents) {
-        addAgent(*agent);
-    }
-}
-
-
-Session::Session(const Session &&other) : g(other.g), treeType(other.treeType), infectedQueue(other.infectedQueue), cycle(other.cycle), carriers(other.carriers), agents(){
-    for(auto agent : other.agents) {
-        Agent* pAgent = agent;
-        agents.push_back(pAgent);
-        agent = nullptr;
-    }
-}
-
-
-const Session &Session::operator=(const Session &other) {
-    g = other.g;
-    treeType = other.treeType;
-    infectedQueue = other.infectedQueue;
-    cycle = other.cycle;
-    carriers = other.carriers;
-    for (auto agent : agents){
-        delete agent;
-    }
-    agents.clear();
-    for (auto otherAgent : other.agents) {
-        addAgent(*otherAgent);
-    }
-    return *this;
-}
-
-
-const Session &Session::operator=(Session &&other) {
-    g = other.g;
-    treeType = other.treeType;
-    infectedQueue = other.infectedQueue;
-    cycle = other.cycle;
-    carriers = other.carriers;
-    for (auto agent : agents){
-        delete agent;
-    }
-    agents.clear();
-    for(auto otherAgent : other.agents) {
-        Agent* pAgent = otherAgent;
-        agents.push_back(pAgent);
-        otherAgent = nullptr;
-    }
-    return *this;
 }

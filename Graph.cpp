@@ -28,7 +28,7 @@ bool Graph::isInfected(int nodeInd) {
 
 std::vector<int> Graph::getNeighbors(int nodeId) const {
     std::vector<int> neighbors {};
-    for(int i {0};i < edges[nodeId].size();++i){
+    for(size_t i = 0; i < edges[nodeId].size(); ++i){
         if (edges[nodeId][i]==1){
             neighbors.push_back(i);
         }
