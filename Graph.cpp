@@ -1,8 +1,9 @@
 #include "Graph.h"
-
+#include "Session.h"
 
 Graph::Graph(std::vector<std::vector<int>> matrix) : edges(matrix), infected(matrix.size(), false) {}
 
+Graph::Graph() : edges(), infected() {}
 
 Graph::Graph(const Graph &other) : edges(other.edges), infected(other.infected) {}  // copy constructor
 
@@ -48,31 +49,34 @@ void Graph::removeEdge(int node1, int node2) {
 }
 
 
-bool Graph::condition() {
+bool Graph::condition(const Session &session) {
     int size = this->getSize();
     bool check {true};
     std::vector<char> color (size,'w');
     for (int i {0};i<size && check;++i){
         if (color[i]=='w'){
-            bool sick {isInfected(i)};
-            check = dfsVisit(i,sick,color);
+            bool sick = isInfected(i);
+            check = dfsVisit(i,sick,color, session);
         }
     }
     return check;
 }
 
 
-bool Graph::dfsVisit(int i, bool sick, std::vector<char> &color) {  //Changed implementation
+bool Graph::dfsVisit(int i, bool sick, std::vector<char> &color, const Session &session) {  //Changed implementation
     color[i] = 'g';
     bool bContinueDfs;
     if (isInfected(i) != sick){
+        bContinueDfs = false;
+    }
+    else if (session.isCarrier(i) && !isInfected(i)){
         bContinueDfs = false;
     } else {
         bContinueDfs = true;
         std::vector<int> neighbors(this->getNeighbors(i));
         for (auto node : neighbors){
             if (color[node]=='w'){
-                bContinueDfs = dfsVisit(node, sick, color);
+                bContinueDfs = dfsVisit(node, sick, color, session);
                 if (!bContinueDfs) break;
             }
         }
