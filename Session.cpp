@@ -55,7 +55,7 @@ void Session::simulate() {
         for(size_t i {0};i<numOfAgents;++i){
             agents[i]->act(*this);
         }
-        terminate = g.condition();
+        terminate = g.condition(*this);
         cycle++;
     }
     createOutputJson();
@@ -125,7 +125,7 @@ const std::queue<int> &Session::getInfectedQueue() const {
 }
 
 
-bool Session::isCarrier(int nodeIndex) {    //Added [6/11]
+bool Session::isCarrier(int nodeIndex) const {    //Added [6/11]
     return carriers[nodeIndex];
 }
 

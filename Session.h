@@ -34,7 +34,7 @@ public:
     const Graph &getG() const;
     const std::queue<int> &getInfectedQueue() const;
     void createOutputJson();
-    bool isCarrier(int nodeIndex);  //Added [6/11]
+    bool isCarrier(int nodeIndex) const;  //Added [6/11]
     void makeCarrier(int nodeIndex);//Added [6/11]
 private:
     Graph g;

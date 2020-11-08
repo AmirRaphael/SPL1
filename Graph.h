@@ -2,6 +2,7 @@
 #define GRAPH_H_
 
 #include <vector>
+class Session;
 
 class Graph{
 public:
@@ -11,7 +12,7 @@ public:
     Graph()=default;    // default constructor
     void infectNode(int nodeInd);
     bool isInfected(int nodeInd);
-    bool condition();
+    bool condition(const Session &session);
 
     const std::vector<std::vector<int>> &getEdges() const;
     std::vector<int> getNeighbors(int nodeId) const;
@@ -21,7 +22,7 @@ public:
 private:
     std::vector<std::vector<int>> edges;
     std::vector<bool> infected; // used to track which nodes are infected
-    bool dfsVisit(int i, bool sick, std::vector<char> &vector);
+    bool dfsVisit(int i, bool sick, std::vector<char> &vector, const Session &session);
 };
 
 #endif

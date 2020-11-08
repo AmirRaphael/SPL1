@@ -10,6 +10,5 @@ int main(int argc, char** argv){
     }
     Session sess(argv[1]);
     sess.simulate();
-    cout << "Program Didn't Crash" << endl;
     return 0;
 }
