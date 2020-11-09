@@ -57,18 +57,24 @@ Session::Session(const Session &&other) : g(other.g), treeType(other.treeType), 
 
 
 const Session &Session::operator=(const Session &other) {
-    g = other.g;
-    treeType = other.treeType;
-    infectedQueue = other.infectedQueue;
-    carriers = other.carriers;
-    cycle = other.cycle;
-    for (auto agent : agents){
-        delete agent;
+    if (this!=&other){
+        g = other.g;
+        treeType = other.treeType;
+        infectedQueue = other.infectedQueue;
+        carriers = other.carriers;
+        cycle = other.cycle;
+        for (auto agent : agents){
+            if (agent){
+                delete agent;
+            }
+        }
+        agents.clear();
+        for (auto otherAgent : other.agents) {
+            addAgent(*otherAgent);
+        }
+
     }
-    agents.clear();
-    for (auto otherAgent : other.agents) {
-        addAgent(*otherAgent);
-    }
+
     return *this;
 }
 
@@ -80,7 +86,9 @@ const Session &Session::operator=(Session &&other) {
     carriers = other.carriers;
     cycle = other.cycle;
     for (auto agent : agents){
-        delete agent;
+        if (agent){
+            delete agent;
+        }
     }
     agents.clear();
     for(auto otherAgent : other.agents) {
@@ -93,7 +101,9 @@ const Session &Session::operator=(Session &&other) {
 
 Session::~Session() {
     for (auto agent : agents) {
-        delete agent;
+        if (agent){
+            delete agent;
+        }
     }
 }
 

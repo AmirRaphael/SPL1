@@ -18,29 +18,35 @@ Tree::Tree(Tree &&other) :  time(other.time), depth(other.depth), node(other.nod
         children.push_back(pChild);
         child = nullptr;
     }
-}  // move constructor - change
+}
 
 
 const Tree &Tree::operator=(const Tree &other) {
-    time = other.time;
-    depth = other.depth;
-    node = other.node;
-    for (auto child : children){
-        delete child;
-    }
-    children.clear();
-    for (auto otherChild : other.children) {
-        addChild(*otherChild); // -used original addchild.
+    if (this!=&other){
+        time = other.time;
+        depth = other.depth;
+        node = other.node;
+        for (auto child : children){
+            if (child && child!=&other){ // edge case when assigning node to be one of its children.
+                delete child;
+            }
+        }
+        children.clear();
+        for (auto otherChild : other.children) {
+            addChild(*otherChild); // -used original addchild.
+        }
     }
     return *this;
 }
 
-const Tree &Tree::operator=(const Tree &&other) {
+const Tree &Tree::operator=(Tree &&other) {
     time = other.time;
     depth = other.depth;
     node = other.node;
     for (auto child : children){
-        delete child;
+        if (child){
+            delete child;
+        }
     }
     children.clear();
     for (auto otherChild : other.children) {

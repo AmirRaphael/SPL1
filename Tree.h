@@ -12,7 +12,7 @@ public:
     Tree(const Tree &other);   // copy constructor [06/11]
     Tree(Tree &&other);        // move constructor [06/11]
     const Tree& operator=(const Tree& other); // copy assignment
-    const Tree& operator=(const Tree&& other); // move assignment
+    const Tree& operator=(Tree&& other); // move assignment
     virtual ~Tree();
 
     void addChild(const Tree& child);
@@ -33,7 +33,6 @@ protected:
 private:
     int node;
     std::vector<Tree*> children;
-
 };
 //============CycleTree==============
 class CycleTree: public Tree{
