@@ -4,11 +4,10 @@
 #include "Agent.h"
 #include "json.hpp"
 
-
 using json = nlohmann::json;
 
-
-Session::Session(const std::string &path) : g(), treeType(), agents(), infectedQueue(), cycle(0), carriers() {   //Added: member init list [02/11] , carriers() [6/11]
+// default constructor
+Session::Session(const std::string &path) : g(), treeType(), agents(), infectedQueue(), carriers(), cycle(0) {
     json j;
     std::ifstream i(path);
     i >> j;
@@ -26,7 +25,7 @@ Session::Session(const std::string &path) : g(), treeType(), agents(), infectedQ
         }
     }
     g = Graph(gMatrix);
-    // init carriers vector
+    // set carriers vector
     carriers = std::vector<bool>(gSize, false);
     // set Agents
     for (auto item : j["agents"]){
@@ -40,22 +39,82 @@ Session::Session(const std::string &path) : g(), treeType(), agents(), infectedQ
     }
 }
 
+// copy constructor
+Session::Session(const Session &other) : g(other.g), treeType(other.treeType), agents(), infectedQueue(other.infectedQueue), carriers(other.carriers), cycle(other.cycle){
+    for(auto agent : other.agents) {
+        addAgent(*agent);
+    }
+}
 
+// move constructor
+Session::Session(const Session &&other) : g(other.g), treeType(other.treeType), agents(), infectedQueue(other.infectedQueue), carriers(other.carriers), cycle(other.cycle){
+    for(auto agent : other.agents) {
+        Agent* pAgent = agent;
+        agents.push_back(pAgent);
+        agent = nullptr;
+    }
+}
+
+// copy assignment
+const Session &Session::operator=(const Session &other) {
+    if (this != &other){
+        g = other.g;
+        treeType = other.treeType;
+        infectedQueue = other.infectedQueue;
+        carriers = other.carriers;
+        cycle = other.cycle;
+        for (auto agent : agents){
+            if (agent){
+                delete agent;
+            }
+        }
+        agents.clear();
+        for (auto otherAgent : other.agents) {
+            addAgent(*otherAgent);
+        }
+    }
+    return *this;
+}
+
+// move assignment
+const Session &Session::operator=(Session &&other) {
+    g = other.g;
+    treeType = other.treeType;
+    infectedQueue = other.infectedQueue;
+    carriers = other.carriers;
+    cycle = other.cycle;
+    for (auto agent : agents){
+        if (agent){
+            delete agent;
+        }
+    }
+    agents.clear();
+    for(auto otherAgent : other.agents) {
+        Agent* pAgent = otherAgent;
+        agents.push_back(pAgent);
+        otherAgent = nullptr;
+    }
+    return *this;
+}
+
+// destructor
 Session::~Session() {
     for (auto agent : agents) {
-        delete agent;
+        if (agent){
+            delete agent;
+        }
     }
 }
 
 
 void Session::simulate() {
-    bool terminate {false};
-    while (!terminate){
-        size_t numOfAgents {agents.size()};
-        for(size_t i {0};i<numOfAgents;++i){
+    bool bTerminate = false;
+    while (!bTerminate){
+        size_t numOfAgents = agents.size();
+        for(size_t i = 0; i < numOfAgents; ++i){
             agents[i]->act(*this);
         }
-        terminate = g.condition();
+        bTerminate = g.condition(*this);
         cycle++;
     }
     createOutputJson();
@@ -73,7 +132,7 @@ void Session::createOutputJson() {
         }
     }
     jOutput["infected"] = {};
-    for (int nodeIndex = 0; nodeIndex < gSize; ++nodeIndex) {
+    for (size_t nodeIndex = 0; nodeIndex < gSize; ++nodeIndex) {
         if (g.isInfected(nodeIndex))
             jOutput["infected"].push_back(nodeIndex);
     }
@@ -82,24 +141,15 @@ void Session::createOutputJson() {
 }
 
 
-int Session::getCycle() const {
-    return cycle;
-}
-
-
-const Graph &Session::getG() const {
-    return g;
-}
-
-
-void Session::setGraph(const Graph &graph) {    // Added implementation [03/11]
-    g = graph;
-}
-
-
-void Session::addAgent(const Agent &agent) {    // Added implementation [03/11]
-    Agent *pAgent = agent.clone();  // Dynamic memory allocation of Agent happens in clone()
+void Session::addAgent(const Agent &agent) {
+    // Dynamic memory allocation of Agent object happens in Agent::clone()
+    Agent *pAgent = agent.clone();
     agents.push_back(pAgent);
+}
+
+
+void Session::setGraph(const Graph &graph) {
+    g = graph;
 }
 
 
@@ -115,6 +165,11 @@ int Session::dequeueInfected() {
 }
 
 
+const Graph &Session::getG() const {
+    return g;
+}
+
+
 TreeType Session::getTreeType() const {
     return treeType;
 }
@@ -125,63 +180,16 @@ const std::queue<int> &Session::getInfectedQueue() const {
 }
 
 
-bool Session::isCarrier(int nodeIndex) {    //Added [6/11]
+int Session::getCycle() const {
+    return cycle;
+}
+
+
+bool Session::isCarrier(int nodeIndex) const {
     return carriers[nodeIndex];
 }
 
 
-void Session::makeCarrier(int nodeIndex) {  //Added [6/11]
+void Session::makeCarrier(int nodeIndex) {
     carriers[nodeIndex] = true;
-}
-
-
-Session::Session(const Session &other) : g(other.g), treeType(other.treeType), infectedQueue(other.infectedQueue), cycle(other.cycle), carriers(other.carriers){
-    for(auto agent : other.agents) {
-        addAgent(*agent);
-    }
-}
-
-
-Session::Session(const Session &&other) : g(other.g), treeType(other.treeType), infectedQueue(other.infectedQueue), cycle(other.cycle), carriers(other.carriers){
-    for(auto agent : other.agents) {
-        Agent* pAgent = agent;
-        agents.push_back(pAgent);
-        agent = nullptr;
-    }
-}
-
-
-const Session &Session::operator=(const Session &other) {
-    g = other.g;
-    treeType = other.treeType;
-    infectedQueue = other.infectedQueue;
-    cycle = other.cycle;
-    carriers = other.carriers;
-    for (auto agent : agents){
-        delete agent;
-    }
-    agents.clear();
-    for (auto otherAgent : other.agents) {
-        addAgent(*otherAgent);
-    }
-    return *this;
-}
-
-
-const Session &Session::operator=(Session &&other) {
-    g = other.g;
-    treeType = other.treeType;
-    infectedQueue = other.infectedQueue;
-    cycle = other.cycle;
-    carriers = other.carriers;
-    for (auto agent : agents){
-        delete agent;
-    }
-    agents.clear();
-    for(auto otherAgent : other.agents) {
-        Agent* pAgent = otherAgent;
-        agents.push_back(pAgent);
-        otherAgent = nullptr;
-    }
-    return *this;
 }
