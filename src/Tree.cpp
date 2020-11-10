@@ -32,13 +32,13 @@ const Tree &Tree::operator=(const Tree &other) {
         depth = other.depth;
         node = other.node;
         for (auto child : children){
-            if (child && child!=&other){ // edge case when assigning node to be one of its children.
+            if (child && child!=&other){ // edge case: "other" is a refrence to one of "this" children.
                 delete child;
             }
         }
         children.clear();
         for (auto otherChild : other.children) {
-            addChild(*otherChild); // -used original addchild.
+            addChild(*otherChild);
         }
     }
     return *this;
