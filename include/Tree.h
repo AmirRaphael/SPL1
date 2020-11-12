@@ -49,8 +49,6 @@ private:
 class CycleTree: public Tree{
 public:
     CycleTree(int rootLabel, int currCycle); // default constructor
-    CycleTree(const CycleTree& other); // copy constructor
-    CycleTree(CycleTree &&other); // move constructor
     virtual ~CycleTree(); // destructor
 
     virtual int traceTree();

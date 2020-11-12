@@ -184,11 +184,6 @@ void Tree::setDepth(int _depth) {
 // default constructor
 CycleTree::CycleTree(int rootLabel, int currCycle) : Tree(rootLabel), currCycle(currCycle) {}
 
-// copy constructor
-CycleTree::CycleTree(const CycleTree &other) : Tree(other), currCycle(other.currCycle) {}
-
-// move constructor
-CycleTree::CycleTree(CycleTree &&other) : Tree(other), currCycle(other.currCycle) {}
 
 // destructor
 CycleTree::~CycleTree() {}
