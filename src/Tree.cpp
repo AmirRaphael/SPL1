@@ -60,6 +60,7 @@ const Tree &Tree::operator=(Tree &&other) {
         children.push_back(pChild);
         otherChild = nullptr;
     }
+    other.children.clear();
     return *this;
 }
 
@@ -185,10 +186,6 @@ void Tree::setDepth(int _depth) {
 CycleTree::CycleTree(int rootLabel, int currCycle) : Tree(rootLabel), currCycle(currCycle) {}
 
 
-// destructor
-CycleTree::~CycleTree() {}
-
-
 int CycleTree::traceTree() {
     Tree *pCurrNode = this;
     bool bLastNode = false;
@@ -216,8 +213,7 @@ Tree *CycleTree::clone() const {
 // default constructor
 MaxRankTree::MaxRankTree(int rootLabel) : Tree(rootLabel) {}
 
-// destructor
-MaxRankTree::~MaxRankTree() {}
+
 
 
 int MaxRankTree::traceTree() {
@@ -256,8 +252,6 @@ Tree *MaxRankTree::clone() const {
 // default constructor
 RootTree::RootTree(int rootLabel) : Tree(rootLabel) {}
 
-// destructor
-RootTree::~RootTree() {}
 
 
 int RootTree::traceTree() {

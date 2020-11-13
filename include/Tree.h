@@ -49,7 +49,6 @@ private:
 class CycleTree: public Tree{
 public:
     CycleTree(int rootLabel, int currCycle); // default constructor
-    virtual ~CycleTree(); // destructor
 
     virtual int traceTree();
 
@@ -65,7 +64,6 @@ private:
 class MaxRankTree: public Tree{
 public:
     MaxRankTree(int rootLabel); // default constructor
-    virtual ~MaxRankTree(); // destructor
 
     virtual int traceTree();
 
@@ -80,7 +78,6 @@ public:
 class RootTree: public Tree{
 public:
     RootTree(int rootLabel); // default constructor
-    virtual ~RootTree(); // destructor
 
     virtual int traceTree();
 
