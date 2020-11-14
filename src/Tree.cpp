@@ -23,6 +23,7 @@ Tree::Tree(Tree &&other) :  time(other.time), depth(other.depth), node(other.nod
         children.push_back(pChild);
         child = nullptr;
     }
+    other.children.clear();
 }
 
 // copy assignment
@@ -212,8 +213,6 @@ Tree *CycleTree::clone() const {
 
 // default constructor
 MaxRankTree::MaxRankTree(int rootLabel) : Tree(rootLabel) {}
-
-
 
 
 int MaxRankTree::traceTree() {

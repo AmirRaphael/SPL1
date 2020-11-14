@@ -19,7 +19,7 @@ public:
     // Rule of 5
     Session(const std::string& path); // default constructor
     Session(const Session& other); // copy constructor
-    Session(const Session&& other); // move constructor
+    Session(Session&& other); // move constructor
     const Session& operator=(const Session& other); // copy assignment
     const Session& operator=(Session&& other); // move assignment
     virtual ~Session(); // destructor

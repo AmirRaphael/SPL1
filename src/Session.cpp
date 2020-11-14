@@ -47,12 +47,13 @@ Session::Session(const Session &other) : g(other.g), treeType(other.treeType), a
 }
 
 // move constructor
-Session::Session(const Session &&other) : g(other.g), treeType(other.treeType), agents(), infectedQueue(other.infectedQueue), carriers(other.carriers), cycle(other.cycle){
+Session::Session(Session &&other) : g(other.g), treeType(other.treeType), agents(), infectedQueue(other.infectedQueue), carriers(other.carriers), cycle(other.cycle){
     for(auto agent : other.agents) {
         Agent* pAgent = agent;
         agents.push_back(pAgent);
         agent = nullptr;
     }
+    other.agents.clear();
 }
 
 // copy assignment
@@ -94,6 +95,7 @@ const Session &Session::operator=(Session &&other) {
         agents.push_back(pAgent);
         otherAgent = nullptr;
     }
+    other.agents.clear();
     return *this;
 }
 
